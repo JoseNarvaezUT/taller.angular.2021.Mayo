@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="taller" >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js" ></script>
+    <style>
+        .miClase{
+            background-color: aqua;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <a href="index2.html">Index2</a>
+    <hr>
+    <div ng-controller="controlLlamadas" >
+
+        <h3 ng-style="estilos"  >{{evento}}</h3>
+        <h4 ng-class="clases" >{{evento}}</h4>
+
+        <button ng-click="clickSimple()" ng-dblclick="clickDoble()">Click</button>
+        <button ng-dblclick="clickDoble()" >Doble Click</button>
+        <button ng-click="cambiarEstilo()" >Cambiar estilo</button>
+        <button ng-click="cambiarClase()" >Cambiar Clase</button>
+        <button ng-click="limpiarEstilos()" >Limpiar estilos</button>
+        <br>
+        <img src="animal1.jpg"  alt="" ng-mouseleave="dejaImagen()" ng-mouseenter="entraImage()" >
+
+
+        <ul>
+            <li ng-repeat="unaLlamada in llamadas " >{{unaLlamada}}</li>
+        </ul>
+
+        <table border="1">
+            <tr ng-repeat="unaLlamada in llamadas">
+                <td>{{unaLlamada}}</td>
+            </tr>
+        </table>
+        <br>
+        <label for="">Buscar: </label>
+        <input type="search" ng-model="busqueda" />
+        <br/>
+        <table border="1" >
+            <tr ng-repeat="contacto in agenda | filter: busqueda" >
+                <td>{{contacto.nombre}}</td>
+                <td>{{contacto.apellidos}}</td>
+                <td>{{contacto.telefono}}</td>
+                <td><button ng-click="llamar(contacto)"  >Llamar</button> </td>
+                <td>{{contacto.estado}}</td>
+            </tr>
+        </table>
+    </div>
+
+
+
+
+    {{ 'Hola Mundo, eres :  ' + unNombre }}
+
+    {{ 'Jose ' + 'Christian '}} Narvaez Figueroa
+
+    {{ (15+9)*5*8 }}
+
+
+    <ul ng-show="true" >
+        <li>Mango 1k {{25 | currency }} </li>
+        <li>Manzana 1k {{35 | currency:"ç" }} {{'Oferton' | uppercase}} </li>
+        <li>Peras 1k {{40 | currency }} {{'Ultimas piezas' | lowercase}} </li>
+    </ul>
+
+    <hr/>
+
+    <fieldset>
+        <legend>Ejemplo Model</legend>
+        <label>Tu nombre:</label>
+        <input type="text" ng-model="unNombre" />
+        <p>{{unNombre}}</p>
+    </fieldset>
+    <hr>
+    <div ng-controller="controlTienda" >
+        <h2>Oferta de verduras</h2>
+        <p>Las calabazas de $15 x 1 kg</p>
+        <p>Las calabazas tiene 5% de descuento</p>
+        <input type="number" ng-model="cantidad" />
+        
+        El total a pagar por las calabazas es: {{cantidad * 15 * 0.95 }}
+        <br>
+        {{'Hola ' + nombre}}
+    </div>
+
+    <hr>
+    <div ng-controller="controlSaludar" >
+        <input type="text" ng-model="nombre">
+        {{'Hola ' + nombre}}
+    </div>
+
+
+    <hr>
+    <div ng-controller="controlSaludar" >
+        <input type="text" ng-model="nombre">
+        {{'Hola ' + nombre}}
+
+        <button type="button" ng-click="agregarApellidos()"  >Asignar apellidos</button>
+    </div>
+
+
+   
+
+
+
+    <script>
+        var miApp = angular.module("taller",[]);
+        
+        miApp.controller("controlTienda",function($scope){
+            $scope.cantidad = 0;
+            $scope.nombre ="Christian";
+            $scope.dato = "Dato del controlador";
+        });
+
+        miApp.controller("controlSaludar",function($scope){
+            $scope.nombre ="José";
+
+            $scope.agregarApellidos = function(){
+                $scope.nombre = $scope.nombre +" Narvaez Figueroa";
+            }
+        });
+
+        miApp.controller("controlLlamadas",function($scope){
+            $scope.evento = "Sin evento";
+            $scope.estilos = {};
+            $scope.llamadas = [
+                "7771234567",
+                "7778745612",
+                "7775641235",
+                "7354578124",
+            ];
+
+            $scope.agenda = [
+                {
+                    nombre:"Jose",
+                    apellidos:"Narvaez",
+                    telefono:"7773887677"
+                },
+                {
+                    nombre:"Sara",
+                    apellidos:"Gonzalez",
+                    telefono:"7771234567"
+                },
+                {
+                    nombre:"Sebastian",
+                    apellidos:"Sota",
+                    telefono:"7777654321"
+                }
+            ];
+
+
+            $scope.llamar = function(contacto){
+                contacto.estado='Llamando';
+                alert("Llamando a ..."+contacto.nombre)
+            }
+
+            $scope.clickSimple = function(){
+                $scope.evento ="Click simple";
+            }
+
+            $scope.clickDoble = function() {
+                $scope.evento =" Doble click";
+            }
+
+            $scope.entraImage = function(){
+                $scope.evento =" El punto ENTRO a la imagen";
+            }
+
+            $scope.dejaImagen = function(){
+                $scope.evento =" El punto DEJA a la imagen";
+            }
+
+            $scope.cambiarEstilo = function(){
+                $scope.estilos={
+                    "background":"blue",
+                    "color":"white"
+                }
+            }
+
+            $scope.cambiarClase = function(){
+                $scope.clases = "miClase";
+            }
+
+            $scope.limpiarEstilos = function(){
+                $scope.clases = "";
+                $scope.estilos={}
+            }
+
+
+        });
+
+    </script>
+</body>
+</html>

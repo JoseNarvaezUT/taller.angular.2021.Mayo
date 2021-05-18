@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="taller">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js" ></script>
+</head>
+<body ng-controller="control" >
+    
+    {{nombre}}
+    <p ng-hide="showMessage"  >Mensaje para ocultar</p>
+
+    <p ng-show="showMessage" >Mensaje oculto</p>
+
+    <button ng-click="verMensaje()" ng-mouseleave="verMensaje()" >Mostrar secreto</button>
+    <br>
+    <img ng-src="{{imagen}}" alt="">
+    <br>
+    <button ng-click="cambiarImagen('animal1.jpg')" >Imagen 1</button>
+    <button ng-click="cambiarImagen('animal2.png')" >Imagen 2</button>
+    <script>
+        var miApp = angular.module("taller",[]);
+        
+        miApp.controller("control",function($scope){
+            $scope.cantidad = 0;
+            $scope.nombre ="Christian";
+            $scope.dato = "Dato del controlador";
+            $scope.imagen ="animal1.jpg";
+            $scope.showMessage = false;
+
+            $scope.verMensaje = function(){
+                $scope.showMessage = true;
+            }
+
+            $scope.cambiarImagen = function(imagen){
+                $scope.imagen=imagen;
+            }
+
+        });
+    </script>
+</body>
+</html>

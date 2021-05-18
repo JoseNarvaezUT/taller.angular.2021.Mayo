@@ -1,0 +1,108 @@
+- AngulaJS
+    - Framework javascript
+    - Estructural
+
+- Una app web tiene 
+    - Elementos gráficos
+    - Lógica y Datos
+    - Conexión a datos externos
+
+- Arquitectura de AngularJS
+    - Basado en Modelo-Vista-Controlador
+    - Directivas HTML
+    - Inyección de dependencias
+
+- Caracteristicas
+    - Muyt popular
+    - No genera componentes gráficos o CSS
+    - Liviano y eficiente
+    - Coexiste con otros Framework
+
+- Instalar AngulaJS
+    - Creamos archivo index.HTML
+    - Ingresamos js o CDN
+
+- Expresiones AngulaJS
+    - colocar ng-app 
+    - entre llaves una cadena 
+    - No solo soportan cadenas, tambien numeros, operaciones o valores de variables 
+    - Combinar con texto no propio de angualar
+
+- Filtro en AngularJS
+    - Nos permitiran filtrar nuestro datos para presentar la información
+    - Filtros
+        > valor | currency :> me pone el signo de pesos por defecto dollar 
+            | currency:"ç"
+            | currency:"Le pongo lo que quiero"
+        > en minuscula todo 
+            | lowercase 
+            | uppercase
+
+    No ayudaran a dar un formato rapido a nuestros valores.
+
+- Directivas AngularJS
+    - Controlar o modificar HTML
+    - Siempre usar ng-
+    - Las directivas pueden estar dentro de otras
+        > ng-show
+        > ng-click
+        > ng-hide
+    - todas son reinterpretadas para inyectar los elementos interactivos de AngulaJS
+    - Estandares web con data-ng-
+
+- Data binding
+    - Modelos tiene la capacidad de data binding
+    - ng-model="unNombre" todos los datos que escribamos ya serán de AngulaJS
+    - insertamos la expresion con el nombre del modelo
+
+- Controladores
+    - ng-app="tiendaDeFruta"
+    - Agregar ng-controller="miControl"
+    - hacemos que indiquemos cuantos mangos por un precio
+    - Es posible tener varios controladores 
+    - Es posible reciclarse
+
+- Métodos de un controladores
+    - funciones internas de un controlador para hacer proceso complejos
+    - creamos una vista para calcular la circunferencia (diametro * pi)
+
+- Colecciones de datos
+    - Creamos lista de nombres
+    - Creamos un ul con su li y ng-repeat="nombreIndividual in nombres"
+    - Ahora lo hacemos por objetos [Heroes] con nombres y apellidos
+
+- Filtrado de datos.
+    - Creamos lista de contactos
+    - La pintamos en una tabla
+    - Creamos input para busqueda ng-model="busqueda"
+    - En ng-repeart agregamos 
+        | filter: busqueda
+
+- Eventos en AngulaJS
+    - Tenemos elementos que escuchen eventos
+    - ng-click
+    - ng-dblclick
+    - ng-mouseleave cuando deja el elemento
+    - ng-mouseenter cuando esta sobre el elemento
+    - Creamos un ejemplo en donde damos click y dobleclick y cambie el valor del eventos
+    - Creamos una imagen para mouseleave y mouseenter
+
+- CSS y AngulaJS
+    - ng-style para asignar estilos directamente
+    - ng-class para asignar toda una clase definida
+
+- Mostrar y Ocultar elementos
+    - ng-show 
+    - ng-hide
+
+- Cambiar imagenes con ng-src={{imagen.png}}
+
+- Incluir modulos externos
+    - Agregamos modulo de ng-route
+    - Creamos plantillas externas para ser incluidas
+    - agreamos div con ng-include y src="'ruta/plantalla.html'"
+
+
+- Ng-route
+
+    - agregamos modulo al modulo ['ngRoute']

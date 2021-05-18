@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="tiendita">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.8.2/angular-route.min.js"></script>
+    
+    <title>Ejemplo Angular</title>
+    <style>
+        .angular {
+            background-color: aqua;
+            font-size: 15px;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <label>Name:</label>
+        <input type="text" ng-model="yourName" placeholder="Enter a name here">
+        <hr>
+        <h1>Hello {{yourName}}!</h1>
+        {{ 50 | currency}}
+    </div>
+    <div ng-controller="miControl">
+        <p ng-style="estilos ">{{dato}}</p>
+        <p ng-class="clases">{{dato}}</p>
+
+        <button ng-click="cambiarEstilo()">Cambiar estilo</button>
+        <button ng-click="cambiarClase()">Cambiar clase</button>
+
+        <hr>
+        <img ng-src="{{imagen}}" alt="">
+        <br>
+        <button ng-click="cambiarImagen('animal1.jpg')">Imagen 1</button>
+        <button ng-click="cambiarImagen('animal2.png')">Imagen 2</button>
+        <br>
+        <hr><br>
+        <div ng-include src="'plantillas/menu.html'"  ></div>
+
+        <br>
+        <hr><br>
+        <div ng-view ></div>
+    </div>
+
+
+    <script>
+        var miApp = angular.module("tiendita", ['ngRoute']);
+
+        miApp.config(function($routeProvider){
+            $routeProvider
+                .when('/vista1',{
+                    templateUrl:'plantillas/vista1.html'
+                })
+                .when('/vista2',{
+                    templateUrl:'plantillas/vista2.html'
+                })
+                .otherwise({
+                    redirectTo:'/',
+                    templateUrl:'plantillas/bienvenida.html',
+                });
+        });
+
+        miApp.controller("miControl", function ($scope) {
+            $scope.dato = "Hola";
+            $scope.estilos = {}
+            $scope.imagen = 'animal1.jpg';
+
+            $scope.cambiarEstilo = function () {
+                $scope.estilos = { "background": "blue", "color": "white" }
+            }
+
+            $scope.cambiarClase = function () {
+                $scope.clases = "angular"
+            }
+            $scope.cambiarImagen = function (imagen) {
+                $scope.imagen = imagen
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>
